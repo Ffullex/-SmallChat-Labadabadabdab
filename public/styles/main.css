@@ -1,0 +1,97 @@
+html {
+    background: transparent;
+}
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+	
+background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, radial-gradient(at 50% 0, #484847, #090909);
+background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
+
+}
+#messages {
+
+    position: relative;
+    left: 40px;
+    right: -30px;
+
+}
+
+#nick {
+ position: absolute;
+ font-size: 20pt;
+ width:  200px;
+ height: 50px;
+ left: 50%;
+ top: 40%;
+ transform: translate(-50%, -50%)
+
+}
+
+
+
+
+
+
+
+#button {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+#button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+textarea {
+ position: absolute;
+ border: none;
+ font-size: 15pt;
+ width:  180px;
+ height: 70px;
+ left: 50%;
+ top: 48%;
+ transform: translate(-50%, -50%)
+}
+
+
+#root {
+    z-index: 17;
+}
+
+
+
