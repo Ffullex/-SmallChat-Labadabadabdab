@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest/globals": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "standard",
+        "plugin:sonarjs/recommended",
+        "prettier"
+    ],
+    "globals": {
+        "process": true,
+        "Promist": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "sonarjs",
+        "jest",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": ["error"],
+        "quotes": ["error", "single"],
+        "comma-dangle": [2, "never"],
+        "react/prop-types": [0]
+    }
+}

@@ -19,9 +19,15 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
-            patterns: [
-                { from: paths.static, to: paths.build },
-            ],
+            patterns:[
+                {
+                    from: paths.static,
+                    to: paths.build,
+                    globOptions:{
+                        ignore:['**/index.html']
+                    }
+                }
+            ]
         }),
         new HtmlWebpackPlugin({
             template: paths.static + '/index.html', // template file
@@ -33,13 +39,10 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader'],
+                use: ['babel-loader', "eslint-loader"],
             },
         ]
-
-     
-
-
-
     }
 };
+
+

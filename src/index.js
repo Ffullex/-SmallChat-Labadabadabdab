@@ -1,19 +1,9 @@
-     import React from 'react';
-     import ReactDOM from 'react-dom';
-     import App from './App';
-     
-        ReactDOM.render(
-            <App/>,
-            document.getElementById('root')
-    );
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+ReactDOM.render(<App />, document.getElementById('root'));
 
-
-
-
-
-
-
- /*   const button = document.getElementById('button');
+/*   const button = document.getElementById('button');
     const nick = document.getElementById('nick');
     const message = document.getElementById('message');
     const results = document.getElementById('results');

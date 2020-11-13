@@ -2,7 +2,6 @@ html {
     background: transparent;
 }
 
-
 html,
 body {
     margin: 0;
@@ -11,44 +10,42 @@ body {
 }
 
 body {
-	
-background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, radial-gradient(at 50% 0, #484847, #090909);
+background: linear-gradient(45deg, #052c54 25%, transparent 25%,
+transparent 75%, #0558ff 75%),
+linear-gradient(45deg, #15c8ba 75%, transparent 100%,
+        transparent 75%, #03ff0e 75%) 0.1875em 0.1875em,
+radial-gradient(at 75% 0, #0d48ff, #ef0707);
 background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
-
 }
+
 #messages {
-
     position: relative;
-    left: 40px;
+    color: #000000;
+    left: 140px;
     right: -30px;
-
 }
 
 #nick {
  position: absolute;
  font-size: 20pt;
- width:  200px;
+ width:  15%;
  height: 50px;
- left: 50%;
- top: 40%;
+ left: 10%;
+ top: 10%;
  transform: translate(-50%, -50%)
-
 }
 
-
-
-
-
-
-
 #button {
-    position: relative;
-    background-color: #4CAF50;
+    position: absolute;
+    background-color: #4b2388;
     border: none;
     font-size: 28px;
-    color: #FFFFFF;
-    padding: 20px;
+    color: #03fdf3;
+    padding: 10px;
+    top: 6%;
+    left: 70.5%;
     width: 200px;
+    height: 55px;
     text-align: center;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -59,10 +56,10 @@ background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
 
 #button:after {
     content: "";
-    background: #f1f1f1;
+    background: #ffffff;
     display: block;
     position: absolute;
-    padding-top: 300%;
+    padding-top: 30%;
     padding-left: 350%;
     margin-left: -20px !important;
     margin-top: -120%;
@@ -81,17 +78,19 @@ textarea {
  position: absolute;
  border: none;
  font-size: 15pt;
- width:  180px;
- height: 70px;
- left: 50%;
- top: 48%;
+ width:  50%;
+ height: 50px;
+ left: 45%;
+ top: 10%;
  transform: translate(-50%, -50%)
 }
-
 
 #root {
     z-index: 17;
 }
 
+.ul.message-list{
+    margin: 10px;
+}
 
 
