@@ -1,62 +1,21 @@
-import Form from './components/Form';
 import React from 'react';
-import MessagesList from './components/MessagesList';
-
-const URL = 'http://localhost:3000';
+import { Switch, Route, redirect } from 'react-router-dom';
+import LoginView from './views/LoginView';
+import RegistrationView from './views/RegistrationView';
+import ChatView from './views/ChatView';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      serverMessages: []
-    };
-
-    setInterval(this.getMessages.bind(this), 1000);
-  }
-
-  postMessage(newMessage) {
-    // метод отправки сообщения
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', URL);
-    xhr.send(
-      JSON.stringify({
-        nick: newMessage.nick,
-        message: newMessage.message
-      })
-    );
-    xhr.onload = () => this.onloadHandler(xhr);
-    xhr.onerror = function () {
-      console.log('Запрос не удался');
-    };
-  }
-
-  getMessages() {
-    // метод получения сообщений
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', URL);
-    xhr.send();
-    xhr.onload = () => this.onloadHandler(xhr);
-  }
-
-  onloadHandler(xhr) {
-    if (xhr.status !== 200) {
-      console.error('Ошибка!');
-    } else {
-      this.drawMessages(xhr.response);
-    }
-  }
-
-  drawMessages(response) {
-    // метод отрисовки сообщений
-    this.setState({ serverMessages: JSON.parse(response) });
-  }
-
   render() {
     return (
       <>
-        <Form postMessage={(newMessage) => this.postMessage(newMessage)} />
-
-        <MessagesList messages={this.state.serverMessages} />
+        <Link to="/login">Логин</Link>&nbsp;
+        <Link to="/registration">Регистрация</Link>&nbsp;
+        <Link to="/profile">Профиль</Link>&nbsp;
+        <Switch>
+          <Route path="/login" component={LoginView} />
+          <Route path="/registration" component={RegistrationView} />
+          <Route path="/chat" component={ChatView} />
+        </Switch>
       </>
     );
   }
