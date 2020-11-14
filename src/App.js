@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import LoginView from './views/LoginView';
 import RegistrationView from './views/RegistrationView';
 import ChatView from './views/ChatView';
@@ -15,6 +15,7 @@ class App extends React.Component {
           <Route path="/login" component={LoginView} />
           <Route path="/registration" component={RegistrationView} />
           <Route path="/chat" component={ChatView} />
+          <Redirect from="/" to="/login" />
         </Switch>
       </>
     );

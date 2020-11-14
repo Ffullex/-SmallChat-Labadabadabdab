@@ -4,7 +4,12 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 const history = createBrowserHistory();
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Router history={history}>
+    <App />
+  </Router>,
+  document.getElementById('root')
+);
 
 /*   const button = document.getElementById('button');
     const nick = document.getElementById('nick');
