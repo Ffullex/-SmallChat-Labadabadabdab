@@ -10,11 +10,11 @@ body {
 }
 
 body {
-background: linear-gradient(45deg, #052c54 25%, transparent 25%,
-transparent 75%, #0558ff 75%),
-linear-gradient(45deg, #15c8ba 75%, transparent 100%,
-        transparent 75%, #03ff0e 75%) 0.1875em 0.1875em,
-radial-gradient(at 75% 0, #0d48ff, #ef0707);
+background: linear-gradient(45deg, #00ff22 25%, transparent 25%,
+transparent 75%, #9429ff 75%),
+linear-gradient(45deg, #d9ff00 75%, transparent 100%,
+        transparent 75%, #ff0000 75%) 0.1875em 0.1875em,
+radial-gradient(at 75% 0, #131828, #bb7eff);
 background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
 }
 

@@ -1,6 +1,6 @@
-import Form from './components/Form';
+import Form from '../components/Form';
 import React from 'react';
-import MessagesList from './components/MessagesList';
+import MessagesList from '../components/MessagesList';
 
 const URL = 'http://localhost:3000';
 
