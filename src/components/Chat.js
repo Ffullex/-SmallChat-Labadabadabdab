@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Chat extends Component {
+class Chat extends React.Component {
   innerClickHandle(e) {
     e.preventDefault();
     this.props.clickHandle(this.props.id);

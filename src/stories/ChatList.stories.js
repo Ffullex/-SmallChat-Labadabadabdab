@@ -9,7 +9,7 @@ export default {
 
 const Template = (args) => <ChatList {...args} />;
 
-export const Common = () => Template.bind({});
+export const Common = Template.bind({});
 Common.args = {
   list: [
     {
@@ -29,5 +29,11 @@ Common.args = {
       title: 'Эх, чатик мой, чатик 1236('
     }
   ],
+  clickHandle: action('Chat clicked')
+};
+
+export const EmptyList = () => Template.bind({});
+EmptyList.args = {
+  list: [],
   clickHandle: action('Chat clicked')
 };
