@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'react-types';
+import PropTypes from 'prop-types';
 import Chat from '../components/Chat';
 
 class ChatList extends Component {
@@ -16,7 +16,7 @@ class ChatList extends Component {
   }
 }
 
-ChatList.propTypes = {
+ChatList.PropTypes = {
   list: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

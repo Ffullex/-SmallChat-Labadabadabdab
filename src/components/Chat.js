@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'react-types';
+import PropTypes from 'prop-types';
 
 class Chat extends Component {
   innerClickHandle(e) {
