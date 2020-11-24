@@ -1,62 +1,101 @@
 import React from 'react';
 import apiService from '../apiService';
+import { Formik } from 'formik';
 
 export default class RegistrationView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nickname: '',
-      password: '',
-      errorMessage: '',
-      successMessage: ''
+      result: null,
+      error: null
     };
   }
 
-  handleSubmit(event) {
-    const { nickname, password } = this.state;
-    event.preventDefault();
-    this.setState({
-      errorMessage: '',
-      successMessage: ''
-    });
+  handleSubmit(values) {
     apiService.user
-      .create({ nickname, password })
-      .then(() => this.setState({ successMessage: 'Успех!' }))
-      .then(() => setTimeout(this.props.history.push('/login'), 2000))
-      .catch((error) => this.setState({ error: 'Ошибка' + error.response.data.error }));
+      .create(values)
+      .then(() => {
+        this.setState({ result: 'Регистрация успешна' });
+        setTimeout(() => this.props.history.push('/login'), 2000);
+      })
+      .catch((error) => this.setState({ error: 'Ошибка: ' + error.response.data.error }));
   }
 
   render() {
-    const { nickname, password, errorMessage, successMessage } = this.state;
+    const { error, result } = this.state;
+
     return (
-      <>
+      <div className="registration-view">
         <h1>Регистрация</h1>
-        {errorMessage}
-        {successMessage}
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <div>
-            <label>
-              Никнейм
-              <input
-                type="text"
-                value={nickname}
-                onChange={(e) => this.setState({ nickname: e.target.value })}
-              />
-            </label>
+
+        {error && (
+          <div className="error">
+            <span style={{ color: 'red' }}>{error}</span>
           </div>
-          <div>
-            <label>
-              Пароль
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => this.setState({ password: e.target.value })}
-              />
-            </label>
-          </div>
-          <button type="submit">Зарегистрироваться</button>
-        </form>
-      </>
+        )}
+
+        {result && <div className="result">{result}</div>}
+        <Formik
+          initialValues={{ nickname: '', password: '' }}
+          validate={(values) => {
+            const errors = {};
+            if (!values.nickname) {
+              errors.nickname = 'Введите никнейм';
+            }
+            if (!values.password) {
+              errors.password = 'Введите пароль';
+            }
+            if (values.password.length < 7) {
+              errors.password = 'Длина пароля должна быть больше 6 символов';
+            }
+            return errors;
+          }}
+          onSubmit={(values) => {
+            this.handleSubmit(values);
+          }}
+        >
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+            <form onSubmit={handleSubmit}>
+              {errors.nickname && touched.nickname && (
+                <div style={{ color: 'red' }}>{errors.nickname}</div>
+              )}
+              <div>
+                <label>
+                  Никнейм:&nbsp;
+                  <input
+                    type="text"
+                    name={'nickname'}
+                    value={values.nickname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </label>
+              </div>
+
+              {errors.password && touched.password && (
+                <div style={{ color: 'red' }}>{errors.nickname}</div>
+              )}
+
+              <div>
+                <label>
+                  Пароль:&nbsp;
+                  <input
+                    type="password"
+                    name={'password'}
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={{ handleBlur }}
+                  />
+                </label>
+              </div>
+
+              <button type="submit" disabled={isSubmitting}>
+                Создать пользователя
+              </button>
+            </form>
+          )}
+        </Formik>
+      </div>
     );
   }
 }
