@@ -84,7 +84,7 @@ export default class RegistrationView extends React.Component {
                     name={'password'}
                     value={values.password}
                     onChange={handleChange}
-                    onBlur={{ handleBlur }}
+                    onBlur={handleBlur}
                   />
                 </label>
               </div>
