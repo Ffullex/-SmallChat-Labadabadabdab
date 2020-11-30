@@ -7,56 +7,70 @@ export default class LoginView extends React.Component {
     this.state = {
       nickname: '',
       password: '',
-      errorMessage: '',
-      successMessage: ''
+      result: null,
+      error: null
     };
   }
 
-  handleSubmit(event) {
-    const { nickname, password } = this.state;
-    event.preventDefault();
+  handleSubmit(e) {
     this.setState({
-      errorMessage: '',
-      successMessage: ''
+      result: null,
+      error: null
     });
     apiService.auth
-      .login({ nickname, password })
-      .then(() => this.setState({ successMessage: 'Успех!' }))
-      .then(() => setTimeout(this.props.history.push('/profile'), 2000))
+      .login({
+        nickname: this.state.nickname,
+        password: this.state.password
+      })
+      .then(() => {
+        this.setState({ result: 'Пользователь успешно залогинился' });
+        setTimeout(() => this.redirectAfterLogin(), 2000);
+      })
       .catch((error) => this.setState({ error: 'Ошибка' + error.response.data.error }));
+    e.preventDefault();
+  }
+
+  redirectAfterLogin() {
+    const redirectUrl = this.props.location?.state.from.pathname
+      ? this.props.location.state.from.pathname
+      : '/profile';
+    this.props.updateAuthHandler().then(() => this.props.history.push(redirectUrl));
   }
 
   render() {
-    const { nickname, password, errorMessage, successMessage } = this.state;
+    const { error, result } = this.state;
+
     return (
-      <>
-        <h1>Аутентификация</h1>
-        {errorMessage}
-        {successMessage}
+      <div className="login-view">
+        <h1>Логин</h1>
+        {error}
+        {result && <div className="result">{result}</div>}
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <div>
             <label>
-              Никнейм
+              Никнейм:&nbsp;
               <input
                 type="text"
-                value={nickname}
+                name="nickname"
+                value={this.state.nickname}
                 onChange={(e) => this.setState({ nickname: e.target.value })}
               />
             </label>
           </div>
           <div>
             <label>
-              Пароль
+              Пароль:&nbsp;
               <input
                 type="password"
-                value={password}
+                name="password"
+                value={this.state.password}
                 onChange={(e) => this.setState({ password: e.target.value })}
               />
             </label>
           </div>
           <button type="submit">Войти</button>
         </form>
-      </>
+      </div>
     );
   }
 }

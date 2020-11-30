@@ -1,36 +1,82 @@
 import React from 'react';
 import apiService from '../apiService';
+import ChatForm from '../components/ChatForm';
+import ChatList from '../components/ChatList';
+import SearchChatForm from '../components/SearchChatForm';
 
 export default class ProfileView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      errorMessage: ''
+      chats: [],
+      foundChats: []
     };
   }
 
   componentDidMount() {
-    apiService.user
-      .getProfile()
+    this.getChatList();
+  }
+
+  handleChatCreate({ title }) {
+    apiService.chat.create({ title }).then(() => this.getChatList());
+  }
+
+  getChatList() {
+    apiService.chat
+      .getMyChats(this.props.user.id)
       .then((response) => response.data)
-      .then((user) => this.setState({ user }))
-      .catch((error) => this.setState({ error: 'Ошибка' + error.response.data.error }));
+      .then((chats) => this.setState({ chats }));
+  }
+
+  goHandler(id) {
+    this.props.history.push(`/chat/${id}`);
+  }
+
+  joinHandler(id) {
+    if (!confirm('Вы действительно хотите вступить в этот чат?')) return;
+
+    apiService.chat.join(id).then(() => this.getChatList());
+  }
+
+  deleteHandler(id) {
+    if (!confirm('Вы действительно хотите удалить этот чат?')) return;
+
+    apiService.chat.delete(id).then(() => this.getChatList());
+  }
+
+  handleChatSearch({ title }) {
+    apiService.chat
+      .search(title)
+      .then((response) => response.data)
+      .then((foundChats) => this.setState({ foundChats }));
   }
 
   render() {
-    const { user, errorMessage } = this.state;
+    const { user } = this.props;
     return (
       <>
         <h1>Профиль пользователя</h1>
-        {this.state.user && (
-          <>
-            <div>ID: {user.id}</div>
-            <div>Никнейм: {user.nickname}</div>
-            <div>Создан: {new Date(this.state.user.createdAt).toLocaleString()}</div>
-          </>
-        )}
-        {errorMessage}
+        <div>Никнейм: {user.nickname}</div>
+        <div>Создан: {new Date(user.createdAt).toLocaleString()}</div>
+
+        <h3>Мои чаты</h3>
+        <ChatList
+          userId={user.id}
+          list={this.state.chats}
+          goHandler={(id) => this.goHandler(id)}
+          joinHandler={(id) => this.joinHandler(id)}
+          deleteHandler={(id) => this.deleteHandler(id)}
+        />
+        <ChatForm handleSubmit={(data) => this.handleChatCreate(data)} />
+
+        <SearchChatForm handleSubmit={(data) => this.handleChatSearch(data)} />
+        <ChatList
+          userId={user.id}
+          list={this.state.foundChats}
+          goHandler={(id) => this.goHandler(id)}
+          joinHandler={(id) => this.joinHandler(id)}
+          deleteHandler={(id) => this.deleteHandler(id)}
+        />
       </>
     );
   }

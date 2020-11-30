@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from './Message';
 
-class MessagesList extends React.Component {
+class MessageList extends React.Component {
   render() {
     const { messages } = this.props;
 
@@ -14,4 +14,4 @@ class MessagesList extends React.Component {
     );
   }
 }
-export default MessagesList;
+export default MessageList;
