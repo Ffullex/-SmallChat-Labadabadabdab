@@ -8,7 +8,11 @@ export default class LoginView extends React.Component {
       nickname: '',
       password: '',
       result: null,
-      error: null
+      error: null,
+      formErrors: {
+        nickname: null,
+        password: null
+      }
     };
   }
 
@@ -31,7 +35,7 @@ export default class LoginView extends React.Component {
   }
 
   redirectAfterLogin() {
-    const redirectUrl = this.props.location.state.from.pathname
+    const redirectUrl = this.props.location.state
       ? this.props.location.state.from.pathname
       : '/profile';
     this.props.updateAuthHandler().then(() => this.props.history.push(redirectUrl));

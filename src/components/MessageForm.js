@@ -10,9 +10,7 @@ class MessageForm extends React.Component {
 
   handleSend(event) {
     event.preventDefault();
-    this.props.postMessage({
-      content: this.state.content
-    });
+    this.props.postMessage(this.state.content);
     this.setState({ content: '' });
   }
 

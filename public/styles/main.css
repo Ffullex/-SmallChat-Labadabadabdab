@@ -1,41 +1,40 @@
 html {
     background: transparent;
 }
-
 html,
+
 body {
     margin: 0;
     padding: 0;
     height: 100%;
-}
 
-body {
-background: linear-gradient(45deg, #00ff22 25%, transparent 25%,
-transparent 75%, #9429ff 75%),
-linear-gradient(45deg, #d9ff00 75%, transparent 100%,
-        transparent 75%, #ff0000 75%) 0.1875em 0.1875em,
-radial-gradient(at 75% 0, #131828, #bb7eff);
+color: white;
+background: linear-gradient(45deg, #071008 25%, transparent 25%,
+transparent 75%, #24063e 75%),
+linear-gradient(45deg, #313901 75%, transparent 100%,
+        transparent 75%, #530202 75%) 0.1875em 0.1875em,
+radial-gradient(at 75% 0, #131828, #240348);
 background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
 }
 
-#messages {
+.messages {
     position: relative;
     color: #000000;
     left: 140px;
     right: -30px;
 }
 
-#nick {
+.nick {
  position: absolute;
  font-size: 20pt;
  width:  15%;
  height: 50px;
  left: 10%;
  top: 10%;
- transform: translate(-50%, -50%)
+/* transform: translate(-50%, -50%)*/
 }
 
-#button {
+.button {
     position: absolute;
     background-color: #4b2388;
     border: none;
@@ -54,7 +53,7 @@ background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
     cursor: pointer;
 }
 
-#button:after {
+.button:after {
     content: "";
     background: #ffffff;
     display: block;
@@ -67,7 +66,7 @@ background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
     transition: all 0.8s
 }
 
-#button:active:after {
+.button:active:after {
     padding: 0;
     margin: 0;
     opacity: 1;
@@ -85,7 +84,7 @@ textarea {
  transform: translate(-50%, -50%)
 }
 
-#root {
+.root {
     z-index: 17;
 }
 

@@ -7,7 +7,8 @@ class ChatView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: []
+      messages: [],
+      users: []
     };
 
     this.timer = null;
